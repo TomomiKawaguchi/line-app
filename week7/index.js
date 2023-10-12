@@ -9,7 +9,8 @@ const config = {
 };
 
 const client = new line.Client(config);
-const sunabarToken = process.env.sunabarToken;
+const API_TOKEN = process.env.API_TOKEN;
+const API_ENDPOINT = process.env.API_ENDPOINT;
     
 exports.handler = async (event) => {
     
@@ -103,26 +104,7 @@ exports.handler = async (event) => {
                 }
             );
         }
-
-        // options = {
-        //     'method': 'GET',
-        //     'url': 'https://api.sunabar.gmo-aozora.com/personal/v1/accounts/balances',
-        //     'headers': {
-        //         'Accept': 'application/json;charset=UTF-8',
-        //         'Content-Type': 'application/json;charset=UTF-8',
-        //         'x-access-token': 'MWI4MWZjYmU4MThlMjZlM2Y1MDM3YTVj'
-        //     }
-        // };
     
-        // let balance;
-        // await request(options).then(function (response) {
-        //     balance = JSON.parse(response.body).balances[0].balance+'円';
-        //     console.log(response.body);
-        // }).catch(function (error) {
-        //     throw new Error(error);
-        // });
-    
-       
     
 
      
@@ -134,11 +116,11 @@ exports.handler = async (event) => {
 else if (reqMessage === '証券会社に振込') {
     options = {
         'method': 'POST',
-        'url': 'https://api.sunabar.gmo-aozora.com/personal/v1/transfer/request',
+        'url':  API_ENDPOINT,
         'headers': {
             'Accept': 'application/json;charset=UTF-8',
             'Content-Type': 'application/json;charset=UTF-8',
-            'x-access-token': 'MWI4MWZjYmU4MThlMjZlM2Y1MDM3YTVj'
+            'x-access-token':  API_TOKEN
         },
         body: '{ \n	"accountId":"301010006996",\n	"transferDesignatedDate":"2023-07-14", \n	"transferDateHolidayCode":"1", \n	"totalCount":"1", \n	"totalAmount":"500000", \n	"transfers":\n	[\n		{ \n			"itemId":"1", \n			"transferAmount":"500000", \n			"beneficiaryBankCode":"0310",\n			"beneficiaryBranchCode":"301", \n			"accountTypeCode":"1", \n			"accountNumber":"0000277", \n			"beneficiaryName":"ｽﾅﾊﾞ ﾂｷﾞｵ"\n		}\n	] \n}'
     };
@@ -178,11 +160,11 @@ else if (reqMessage === '証券会社に振込') {
         resMessage = 'ビットコイン用口座から親口座に500,000円振替ました';
         let options = {
                 'method': 'POST',
-                'url': 'https://api.sunabar.gmo-aozora.com/personal/v1/transfer/spaccounts-transfer',
+                'url': API_ENDPOINT,
                 'headers': {
                     'Accept': 'application/json;charset=UTF-8',
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'x-access-token': 'MWI4MWZjYmU4MThlMjZlM2Y1MDM3YTVj'
+                    'x-access-token': API_TOKEN
                 },
          body: '{ \r\n	"depositSpAccountId":"SP30110006996",\r\n	"debitSpAccountId":"SP50220520461",\r\n	"currencyCode":"JPY",\r\n	"paymentAmount":"500000"\r\n}'
 
