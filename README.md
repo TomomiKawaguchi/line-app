@@ -1,4 +1,5 @@
 # line-app
-GMOあおぞらネット銀行様のAPIを使用した仮想通貨Linebotアプリ
-振込と振替機能を持たせる
-サーバーレスでAWSのlambdaを使用
+GMOあおぞらネット銀行様のAPIを使用した仮想通貨Linebotアプリ。
+Lineチャットで振込と振替機能を持たせる。
+
+node.js、Javascript、AWSのlambdaを使用
